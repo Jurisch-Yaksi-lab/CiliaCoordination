@@ -1,0 +1,19 @@
+{
+"year": 2017,
+"month": 2,
+"day": 3,
+"hour": 14,
+"minutes": 53,
+"seconds": 30,
+"milliseconds": 622,
+"framerate": 107.007,
+"exposure": 100,
+"gain": 0,
+"ROI_x": 414,
+"ROI_y": 364,
+"SW binning": 1,
+"HW binning": 1,
+"HW decimation": 1,
+"stimulus speed": 0,
+"fish force amplifier": 0
+}
