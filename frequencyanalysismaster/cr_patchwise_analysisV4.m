@@ -42,7 +42,7 @@ close all,
 %% Run some checks for every patch 
 
 if check == true
-    cr_check_per_patch(lmatrix, phase_patch, xfield, yfield, phase_pd, mean_phases, cv_phases, pos, PowerSpec, theta_all, magn_all, wave_length, CBF)
+    cr_check_per_patch(lmatrix, phase_patch, xfield, yfield, phase_pd, mean_phases, cv_phases, pos, PowerSpec, theta_all, magn_all, wave_length, magnitude, CBF)
 else
     sprintf('No checks were run')
 end
