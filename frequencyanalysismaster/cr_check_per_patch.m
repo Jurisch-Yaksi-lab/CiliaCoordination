@@ -1,4 +1,4 @@
-function [] = cr_check_per_patch(lmatrix, phase_patch,xfield, yfield, phase_pd, mean_phases, cv_phases, pos, PowerSpec, theta_all,magn_all, wave_length, CBF)
+function [] = cr_check_per_patch(lmatrix, phase_patch,xfield, yfield, phase_pd, mean_phases, cv_phases, pos, PowerSpec, theta_all,magn_all, wave_length, magnitude, CBF)
 % This function plots the underlying variables that make up the wave
 % direction and wavelength
 

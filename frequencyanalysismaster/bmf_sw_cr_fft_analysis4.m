@@ -216,5 +216,5 @@ title(ax8,sprintf('picMask ecdf, no pix = %0.2f',No_pix));
 suptitle(insertBefore(CBF.name,'_','\'));
 
 %% Export nicely
-print( '-painters', fullfile(CBF.targetP, CBF.name), '-png');
+print( '-painters', fullfile(CBF.targetP, CBF.name), '-dpng');
 close(gcf)
