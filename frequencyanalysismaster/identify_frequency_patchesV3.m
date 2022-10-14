@@ -60,5 +60,5 @@ set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
 set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
 xlabel('\mum'), ylabel('\mum'); axis image
 
-export_fig([CBF.targetP,CBF.name,'_figure_determine_frequency_patches'],'-png');
+saveas(gcf, [CBF.targetP, CBF.name, '_figure_determine_frequency_patches.png']);
 print( '-painters', [CBF.targetP, CBF.name, '_figure_determine_frequency_patches'], '-depsc');
