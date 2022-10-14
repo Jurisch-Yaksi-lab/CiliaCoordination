@@ -13,14 +13,6 @@ function [PowerSpec,Peak,Med,Mean,No_pix,picMask,PeakPhase,mask,nframe, PSD, Pea
 
 % Many credits go to Nathalie Jurisch-Yaksi, Jan Niklas Hansen,...
 % Stephan Bawolonski, and Benjamin Friedrich for writing this code.
-% %% Load data file ---------------------------------------------------------
-% fprintf(1,'Load data file %s.\n',CBF.name)
-%
-% % Load matfile
-%     mat = matfile(fullfile(sourceP,[CBF.name, '.mat']));
-%     data = mat.data;
-%
-% fprintf(1,'Data %s loaded! \n',CBF.name)
 
 %% Number of frames as small prime factors (not only 2^L)
 nframe0=size(data,3); % number of frames should only have small prime factors (2^L best, but not necessary)
@@ -75,8 +67,7 @@ toc
 
 %% Retrieving some data
 
-% Translate primary frequency indices (PeakPos) in the power spectra to
-% actual frequencies in Hertz.
+% Translate primary frequency indices (PeakPos) in the power spectra to actual frequencies in Hertz.
 %pic = (PeakPos-1).*100./nframe;
 pic = ((PeakPos-1).*CBF.Fs)./nframe;
 
