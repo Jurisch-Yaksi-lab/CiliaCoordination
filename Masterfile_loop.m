@@ -1,7 +1,7 @@
 %% Master-file loop
 
 sourceP = 'Z:\Mert\Ciliascope\Christas Manuscript\aligned-files\';
-targetP = 'Z:\Mert\Ciliascope\Christas Manuscript\analysed-files_test\';
+targetP = 'Z:\Mert\Ciliascope\Christas Manuscript\analysed-files_test2\';
 
 
 % TODO: 
@@ -38,6 +38,6 @@ for i = 1:length(stk_files)
         % Define the target path
     CBF.targetP = [targetP, stk_files(i).name(1:end-12),'_aligned', filesep];
     
-    Master_analysisV2_3
+    Master_analysis
     
 end

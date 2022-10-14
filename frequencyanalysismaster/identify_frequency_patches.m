@@ -1,12 +1,11 @@
-function [lmatrix,complist] = identify_frequency_patchesV3(I,CBF)
+function [lmatrix,complist] = identify_frequency_patches(I,CBF)
 % This function returns frequency patches given an input image I
 % that shows frequencies as determined for a cilia carpet. 
 % This function assumes that the noise region is masked by NaN values.
 % In addition, we require frequency patches to have minimum size of
 % minsize.
 %
-% Output:
-%
+% output
 % lmatrix: matrix with entries indicating the different patches with labels
 % complist: structure containing indices of the patches
 % minsize: minimum size of a template used to identify connected patches

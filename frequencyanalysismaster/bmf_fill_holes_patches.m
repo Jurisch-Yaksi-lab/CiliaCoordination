@@ -1,6 +1,15 @@
 function [lmatrix_new, complist] = bmf_fill_holes_patches(lmatrix, complist)
 
-% Count the number of patches
+% This function ensures that every patch is continuous within
+% lmatrix = a three-dimensional matrix with a mask for each patch
+% separately
+% complist = patch border information from the frequency segementation code
+
+% output
+% lmatrix_new = the new lmatrix
+% complist = patch border information from the frequency segementation code
+
+%% Count the number of patches
 nPatch = unique(lmatrix); nPatch = nPatch(2:end);
 
 % Prepare a new matrix

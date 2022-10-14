@@ -1,4 +1,4 @@
-function [CBF] = cr_patchwise_analysisV5(phase_patch, pos, PowerSpec, check, CBF)
+function [CBF] = cr_patchwise_analysis(phase_patch, pos, PowerSpec, check, CBF)
 % In this function, a gradient map is calculated for a static phase. 
 % From this gradient map, both the wave direction and wavelength will be
 % calculated and plotted. 
@@ -36,7 +36,7 @@ lmatrix = flipud(CBF.lmatrix);
 
 [wave_length, magn_all] = wavelength(lmatrix);
 
-save([CBF.targetP, CBF.name, '_results_wave_direction_and_lengths.mat'], 'wave_length', 'phase_pd', 'phase_sd', 'direction_pixel');
+save([CBF.targetP, CBF.name, '_results_wave_direction_and_lengths.mat'], 'wave_length', 'phase_pd', 'phase_sd', 'direction_pixel','-v7.3');
 close all, 
 
 %% Run some checks for every patch 
@@ -118,7 +118,7 @@ end
         
         % Phase per patch map
         figure,
-        imagesc(nansum(phase_patch,3), 'AlphaData', ~isnan(phase_pd))
+        imagesc(sum(phase_patch,3, 'omitnan'), 'AlphaData', ~isnan(phase_pd))
         colormap hsv,  c = colorbar; caxis([0 2*pi])
         set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
         set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)

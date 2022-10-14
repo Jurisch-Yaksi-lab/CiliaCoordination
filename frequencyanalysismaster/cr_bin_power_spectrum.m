@@ -26,6 +26,7 @@ sprintf('The step between frequencies is: %0.2f Hz', dCBF*freq_res)
 
 % Allocate for speed
 BinSpec = zeros(CBF.x,CBF.y,CBF.n);
+BinFreq = zeros(CBF.x,CBF.y);
 
 % Bin the Power Spectrum accordingly 
 for i = 2:CBF.n
