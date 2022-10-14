@@ -12,7 +12,7 @@
 % 
 % Define the target path 
 % CBF.targetP = 'X:\Christa\ANALYZED\Data\Viscosity\fish1\03-06-2020_0_1\';
-mkdir(CBF.targetP)
+[status, msg] = mkdir(CBF.targetP);
 cd(CBF.targetP); 
 
 % Input the frequency of acquisition

@@ -13,7 +13,7 @@ function [phase_patch,pos] = calc_phase_patch(data, complist, CBF)
 %% Define some variables
 NumPatches = length(complist.PixelIdxList);
 phase_patch =  nan(CBF.x,CBF.y,NumPatches);
-nyquist = CBF.nframe/2; 
+nyquist = floor(CBF.nframe/2); % round down the frame number
 iw_min=1+round(CBF.w_min/CBF.Fs*CBF.nframe); % minimum frequency
 
 %% Calculate phase angles per patch
