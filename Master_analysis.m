@@ -114,7 +114,7 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 %% Step 6: Calculate wavedirection and wavelength. 
 
 % Decide whether you want to plot the patch check
-check = false; 
+check = true; 
 
 % Set the wavelength histogram variables
 CBF.max_wavelength = 200;

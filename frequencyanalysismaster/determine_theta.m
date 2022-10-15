@@ -47,10 +47,6 @@ function [theta, xfield, yfield] = determine_theta(phase, kernel_sigma)
     xfield(~mask) = (1/6).*xfield2(~mask);
     yfield(~mask) = (1/6).*yfield2(~mask);
 
-    % Create 2D support points (i.e. a grid) where the velocity vectors are
-    % located.
-    %[X,Y] = meshgrid(1:size(xfield,2),1:size(xfield,1)); % yes, arguments are swapped because of matlab: https://stackoverflow.com/questions/28418095
-
     % Determine directions
     direction = @(x,y) atan2(y,x);
     theta = direction(xfield, yfield);
