@@ -1,29 +1,20 @@
 %% Master Analysis file
 % All analysis performed on light transmission recordings of ciliary beating in the zebrafish nose
+% It is possible to run the analysis on aligned data. 
+% Assumes that the input file is a .mat file, and only contains one variable with the recording
 
-%% Step 0: Align recordings 
+%% Step 0: Select the recording
 
-% % Define the path to the raw recording
-% SourceP = 'X:\Christa\ANALYZED\Data\19b\BeyondFish0\07-02-2017_0_0\07-02-2017_0_0_aligned.mat'; 
-% CBF.name = '03-06-2020_0_1_aligned'; % Give a name
-% load(SourceP); 
-% data = double(data); 
+% Select the file to analyze
+[fileS,pathS] = uigetfile('*.mat', 'Select the file to analyze');
+[~,CBF.name,~] = fileparts(fileS); % Give a name
+var = who(matfile(fullfile(pathS,fileS)));
+data = load(fullfile(pathS,fileS),var{1}); 
 
-% 
-% Define the target path 
-% CBF.targetP = 'X:\Christa\ANALYZED\Data\Viscosity\fish1\03-06-2020_0_1\';
-[status, msg] = mkdir(CBF.targetP);
-cd(CBF.targetP); 
-
-% Input the frequency of acquisition
-% CBF.Fs = 107; % Frequency of acquisition
-% data = double(aligned);
-
-% % % Align the data - convert it to double if it is not already.
-% % [aligned] = cr_align_stacks(data); % Sometimes aligning is suboptimal
-% % 
-% % % Save the results
-% % save([CBF.targetP, CBF.name, '_aligned.mat'], 'aligned', '-v7.3');
+% Select where to save the results
+[pathP] = uigetdir(pwd,'Select where to save the results');
+CBF.targetP = fullfile(pathP, CBF.name, filesep);
+[~, ~] = mkdir(CBF.targetP);
 
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 %% Step 1: Defining variables 
@@ -37,6 +28,8 @@ CBF.spatres = 0.15;  % [um/pixel] spatial resolution
 CBF.signal_size = 400; % minimum number of pixels to be considered signal
 CBF.SD = 3; % maximum standard deviation for a block of 9 pixels to be considered signal
 
+% Input the frequency of acquisition
+CBF.Fs = 107; % Frequency of acquisition
 
 % Save the results
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
