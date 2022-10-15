@@ -49,7 +49,7 @@ for n = 1:NumPatches
     phase_patch(:,:,n) = L;
 end
 
-phase_patch = phase_patch+pi; % shift phases to interval [0, 2*pi]
+ phase_patch = phase_patch+pi; % shift phases to interval [0, 2*pi]
 
 %% Save data -------------------------------------------------------------
 save(fullfile(CBF.targetP,[CBF.name,'_results_calc_phase_patch.mat']), 'phase_patch', 'pos','-v7.3');
