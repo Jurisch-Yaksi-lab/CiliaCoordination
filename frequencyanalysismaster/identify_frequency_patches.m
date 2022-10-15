@@ -16,10 +16,11 @@ function [lmatrix,complist] = identify_frequency_patches(I,CBF)
 % Determine set of different frequencies which are present in the data.
 freq_set = unique(I(:));
 
-% Determine and collect connected components that are larger then MINSIZE pixels.
-
 complist.PixelIdxList = {}; 
 
+fprintf('%s: Identify frequency patches\n',mfilename)
+
+tic
 for i = 1:length(freq_set)
     % determine connected components
     P = I==freq_set(i);
@@ -27,14 +28,13 @@ for i = 1:length(freq_set)
     
     % check whether connected components are larger then minsize pixels
     mask = cellfun('length',c.PixelIdxList)>CBF.minsize;
-
-    % only keep those components which are larger then minsize pixels
     c.PixelIdxList(~mask) = [];
     
     % store these connected components
     count = length(complist.PixelIdxList);
     complist.PixelIdxList(count+1:count+length(c.PixelIdxList)) = c.PixelIdxList;
 end
+toc 
 
 % complement information in complist for later processing
 complist.Connectivity = c.Connectivity;
@@ -47,11 +47,13 @@ lmatrix = labelmatrix(complist);
 % Fill the holes in those patches 
 [lmatrix, complist] = bmf_fill_holes_patches(lmatrix, complist);
 
+
 % save results
 save(fullfile(CBF.targetP,[CBF.name,'_result_frequency_patches.mat']),'complist','-v7.3');
 
-
 %% visualize results
+fprintf('plotting and saving...\n\n')
+
 figure, imagesc(lmatrix, 'AlphaData', ~lmatrix == 0);
 colormap jet, set(gcf,'color','w')
 title('frequency patches as obtained by segmentation')

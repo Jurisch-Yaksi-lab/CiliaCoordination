@@ -29,12 +29,20 @@ phase_patch = flipud(phase_patch);
 lmatrix = flipud(CBF.lmatrix); 
 
 %% Calculate the wave direction per patch
+fprintf('%s: Calculate the wave direction per patch\n',mfilename)
 
+tic
 [xfield, yfield, theta_all, phase_pd, phase_sd, mean_phases, cv_phases, direction_pixel] = wave_direction(lmatrix);  
+toc
+fprintf('\n')
 
 %% Calculate the wavelength per patch
+fprintf('%s: Calculate the wavelength per patch\n',mfilename)
 
+tic
 [wave_length, magn_all] = wavelength(lmatrix);
+toc
+fprintf('\n')
 
 save([CBF.targetP, CBF.name, '_results_wave_direction_and_lengths.mat'], 'wave_length', 'phase_pd', 'phase_sd', 'direction_pixel','-v7.3');
 close all, 
@@ -44,7 +52,7 @@ close all,
 if check == true
     cr_check_per_patch(lmatrix, phase_patch, xfield, yfield, phase_pd, mean_phases, cv_phases, pos, PowerSpec, theta_all, magn_all, wave_length, magnitude, CBF)
 else
-    sprintf('No checks were run')
+    fprintf('No checks were run\n\n')
 end
 
 %% Nested functions

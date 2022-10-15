@@ -19,6 +19,8 @@ iw_min=1+round(CBF.w_min/CBF.Fs*CBF.nframe); % minimum frequency
 
 %% Calculate phase angles per patch
 
+fprintf('%s: Identify the phase for each patch\n',mfilename)
+tic
 for n = 1:NumPatches
     
     % Allocate for speed
@@ -49,7 +51,10 @@ for n = 1:NumPatches
     phase_patch(:,:,n) = L;
 end
 
- phase_patch = phase_patch+pi; % shift phases to interval [0, 2*pi]
+phase_patch = phase_patch+pi; % shift phases to interval [0, 2*pi]
+toc
+
+fprintf('saving...\n\n')
 
 %% Save data -------------------------------------------------------------
 save(fullfile(CBF.targetP,[CBF.name,'_results_calc_phase_patch.mat']), 'phase_patch', 'pos','-v7.3');

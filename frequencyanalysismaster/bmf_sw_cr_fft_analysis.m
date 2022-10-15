@@ -41,7 +41,7 @@ ymax=size(data,2);
 raw10 = data(:,:,10);
 
 %% Fourier transform ------------------------------------------------------
-fprintf('Perform the FFT\n')
+fprintf('%s: Perform the FFT\n',mfilename)
 
 % CBF.w_min=15; % [Hz] lower frequency cut-off
 iw_min=1+round(CBF.w_min/CBF.Fs*nframe); % corresponding frequency index
@@ -75,7 +75,6 @@ for y=1:ymax
     end
 end
 toc
-
 
 %% Retrieving some data
 
@@ -116,7 +115,7 @@ No_pix = sum(~isnan(picMask(:)));
 % Mask boundary
 mask_boundary=~edge(mask,'sobel',[],'nothinning');
 
-
+fprintf('plotting and saving...\n\n')
 %% Save data -------------------------------------------------------------
 save(fullfile(CBF.targetP,[CBF.name,'_fft.mat']),'PeakPos','PeakPhase','PeakPower', ...
     'mask','nframe','raw10','PowerSpec', 'MeanPowerSpec', 'PSD','-v7.3');

@@ -20,7 +20,8 @@ tp = spec(1):dCBF:spec(end); % All timepoint that will be considered
 binEdges = tp(1)-dCBF/2; % Make sure that the bins are centered around the timepoint.
 binEdges = [binEdges tp+dCBF/2];
 
-sprintf('The step between frequencies is: %0.2f Hz', dCBF*freq_res)
+fprintf('%s: Perform Frequency binning\n',mfilename)
+fprintf('The step between frequencies is: %0.2f Hz\n', dCBF*freq_res)
 
 %% Bin he Power spectrum 
 
@@ -28,6 +29,7 @@ sprintf('The step between frequencies is: %0.2f Hz', dCBF*freq_res)
 BinSpec = zeros(CBF.x,CBF.y,CBF.n);
 BinFreq = zeros(CBF.x,CBF.y);
 
+tic
 % Bin the Power Spectrum accordingly 
 for i = 2:CBF.n
     start = floor(binEdges(i)); stop = floor(binEdges(i+1));
@@ -46,8 +48,10 @@ BinFreq = BinFreq + iw_min - 1;
 
 conversion = ((CBF.nframe / 2)/ length(binEdges))*freq_res; % Conversion from old to the new frequency positions 
 freqsBinned = BinFreq*conversion; 
+toc
 
 %% Plotting figures 
+fprintf('plotting and saving...\n\n')
 
 figure, 
 subplot(1,2,1), imagesc(CBF.picSD, 'AlphaData', ~isnan(CBF.mask)); c = colorbar; colormap jet, caxis(CBF.caxis)

@@ -4,6 +4,13 @@ function analysis_loop(CBF)
 stk_files = dir([CBF.sourceP,'*.mat']);
 
 
+%% Set up file logging
+diary(fullfile(CBF.folderP, sprintf('log_%s.txt',datetime("now", 'Format','dMMMy_HH-mm-ss'))))
+
+% Initialize 
+fprintf('%s\n',datetime("now"));
+fprintf('%s\n',version);
+
 %% Run through all recordings 
 
 progress()
@@ -14,7 +21,8 @@ for iRec = 1:length(stk_files)
     [~, CBF.name, ~] = fileparts(stk_files(iRec).name); % Give a names
     var = who(matfile(fullfile(CBF.sourceP,CBF.name)));
     data = double(load(fullfile(CBF.sourceP,CBF.name),var{1}).(var{1}));
-
+    fprintf('%s\n\n',fullfile(CBF.sourceP,CBF.name));
+    
     % Set some metadata
     CBF.x = size(data,1); 
     CBF.y = size(data,2); 
@@ -24,7 +32,7 @@ for iRec = 1:length(stk_files)
         [~,value]=import_json([CBF.sourceP, erase(CBF.name,CBF.metadata_ID), '.json']);
         CBF.Fs = value(8); % Frequency of acquisition
     catch
-        sprintf('there is probably no associated .json metadata file')
+        fprintf('there is probably no associated .json metadata file\n')
     end
 
    % Define the target path
@@ -33,5 +41,8 @@ for iRec = 1:length(stk_files)
     
     
     Master_analysis_for_loop
-    
+  
+    fprintf('%s was saved to %s\n\n',CBF.name, fullfile(CBF.targetP));
 end
+
+diary off
