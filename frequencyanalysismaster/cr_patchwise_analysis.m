@@ -128,10 +128,11 @@ end
         figure,
         imagesc(sum(phase_patch,3, 'omitnan'), 'AlphaData', ~isnan(phase_pd))
         colormap hsv,  c = colorbar; caxis([0 2*pi])
+        axis image,
         set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
         set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
         set(gca,'YDir','normal');
-        xlabel('\mum'), ylabel('\mum'); axis image
+        xlabel('\mum'), ylabel('\mum'); 
         hold on
         c.Label.String = 'phase angle';
         saveas(gcf, [CBF.targetP, CBF.name, '_figure_patch_phasemap.png']);
@@ -141,11 +142,12 @@ end
         figure,
         imagesc(phase_pd, 'AlphaData', 1 - phase_sd)
         set(gca,'YDir','normal');
+        axis image,
         set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
         set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
-        xlabel('\mum'), ylabel('\mum');  axis image
+        xlabel('\mum'), ylabel('\mum');  
         colormap hsv,  c = colorbar;  caxis([0 2*pi])
-        c.Label.String = 'wave direction'; axis image
+        c.Label.String = 'wave direction';
         saveas(gcf, [CBF.targetP, CBF.name, '_figure_patch_combined_direction_and_variance.png']);
         print( '-painters', [CBF.targetP, CBF.name, '_figure_patch_combined_direction_and_variance'], '-depsc');   
         
@@ -229,10 +231,11 @@ end
         figure, imagesc(wave_length, 'AlphaData', ~(lmatrix==0));
         set(gca,'YDir','normal');
         c = colorbar; colormap jet;
-        c.Label.String = 'Wavelength [µm]';
+        c.Label.String = 'Wavelength [µm]'; 
+        axis image,
         set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
         set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
-        xlabel('\mum'), ylabel('\mum');  axis image
+        xlabel('\mum'), ylabel('\mum'); 
         hold on
         caxis([0 8])
         title('wavelength per patch');

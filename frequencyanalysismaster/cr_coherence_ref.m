@@ -22,6 +22,7 @@ mkdir([CBF.targetP, 'ref_pix_coherence']);
 nfreqs = CBF.nfft/2+1; % The number of frequency bins
 freq_res = CBF.Fs/nfreqs; % The frequency resolution
 pos_min = floor(CBF.w_min / freq_res); % The corresponding power spectrum position. 
+redblue = brewermap(100,'*RdBu');
 
 %% Calulate the pwelch Fourier Transform 
 
@@ -104,10 +105,11 @@ save([CBF.targetP, CBF.name, '_Pxx.mat'], 'Pxx', 'val');
         c = colorbar; hold on, box off, axis off
         title(sprintf('coherence for [%d,%d]', xx,yy))
         c.Label.String = 'Coherence';
-        caxis([0 1])
+        caxis([0 1]); colormap(redblue);
+        axis image
         set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
         set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
-        xlabel('\mum'), ylabel('\mum'); axis image
+        xlabel('\mum'), ylabel('\mum')
         
         saveas(gcf, [CBF.targetP,'ref_pix_coherence\', sprintf('coherence_pix%d_%d.png', xx,yy)]);
         
@@ -116,9 +118,10 @@ save([CBF.targetP, CBF.name, '_Pxx.mat'], 'Pxx', 'val');
         title(sprintf('frequency at max coherence for [%d,%d]', xx,yy))
         c.Label.String = 'frequency in Hz';
         caxis([16 35]); colormap jet;
+        axis image
         set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
         set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
-        xlabel('\mum'), ylabel('\mum'); axis image
+        xlabel('\mum'), ylabel('\mum')
         
         
         saveas(gcf, [CBF.targetP,'ref_pix_coherence\', sprintf('coherence_freq_pix%d_%d.png', xx,yy)]);

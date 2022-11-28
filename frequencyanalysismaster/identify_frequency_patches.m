@@ -57,9 +57,10 @@ fprintf('plotting and saving...\n\n')
 figure, imagesc(lmatrix, 'AlphaData', ~lmatrix == 0);
 colormap jet, set(gcf,'color','w')
 title('frequency patches as obtained by segmentation')
+axis image
 set(gca,'XTickLabel',get(gca,'XTick')*CBF.spatres)
 set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
-xlabel('\mum'), ylabel('\mum'); axis image
+xlabel('\mum'), ylabel('\mum');
 
 saveas(gcf, [CBF.targetP, CBF.name, '_figure_determine_frequency_patches.png']);
 print( '-painters', [CBF.targetP, CBF.name, '_figure_determine_frequency_patches'], '-depsc');

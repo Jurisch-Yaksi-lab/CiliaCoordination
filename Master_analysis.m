@@ -8,13 +8,14 @@
 % Select the file to analyze
 [fileS,pathS] = uigetfile('*.mat', 'Select the file to analyze');
 [~,CBF.name,~] = fileparts(fileS); % Give a name
-var = who(matfile(fullfile(pathS,fileS)));
-data = load(fullfile(pathS,fileS),var{1}); 
 
 % Select where to save the results
 [pathP] = uigetdir(pwd,'Select where to save the results');
 CBF.targetP = fullfile(pathP, CBF.name, filesep);
 [~, ~] = mkdir(CBF.targetP);
+
+var = who(matfile(fullfile(pathS,fileS)));
+data = double(load(fullfile(pathS,fileS),var{1}).(var{1}));
 
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 %% Step 1: Defining variables 
@@ -47,27 +48,34 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 
 %% Step 3: Coherence with example pixels 
  
-% % % % Decide on reference pixels: uncomment to choose
-% % figure, imagesc(CBF.picSD); 
-% % ref = ginput; 
-% % ref = round(ref);
-%  CBF.ref = ref; % Save the refence pixels
-% % 
-% % Set some variables specific to the coherence analysis
-% CBF.window = hamming(100); % window 100, noverlap 80, nfft 100 work very well! 
-% CBF.noverlap = 80; 
-% CBF.nfft = 100; 
-% 
-% % Compute coherence all with one reference pixel (~120s per reference pixel)
-% [Pxx, val] = cr_coherence_ref(data, CBF);
-% 
-% % Save results
-% save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
+% % Decide on reference pixels: uncomment to choose
+% figure, imagesc(CBF.picSD); 
+% ref = ginput; 
+% ref = round(ref);
+
+% Alternatively, load a matfile with the reference pixels presaved
+[fileR,pathR] = uigetfile('*.mat', 'Select the file with reference pixels to analyze');
+var = who(matfile(fullfile(pathR,fileR)));
+ref = double(load(fullfile(pathR,fileR),var{1}).(var{1}));
+
+% Save the refence pixels
+ CBF.ref = ref; 
+ 
+% Set some variables specific to the coherence analysis
+CBF.window = hamming(100); % window 100, noverlap 80, nfft 100 work very well! 
+CBF.noverlap = 80; 
+CBF.nfft = 100; 
+
+% Compute coherence all with one reference pixel (~120s per reference pixel)
+[Pxx, val] = cr_coherence_ref(data, CBF);
+
+% Save results
+save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 
 %% Step 3.5: Coherence versus spectral density scatterplot 
 
-% % Plot coherence versus power spectral contribution (~30s)
-% map = cr_coherence_vs_psd(val, PeakPos, PowerSpec, CBF);
+% Plot coherence versus power spectral contribution (~30s)
+map = cr_coherence_vs_psd(val, PeakPos, PowerSpec, CBF);
 
 
 %% Step 4: Pairwise Coherence versus distance
@@ -76,11 +84,11 @@ CBF.f = 5; % subsample factor
 
 % Bin into 100 bins.  
 CBF.n = 100;  % Number of bins to segment the powerspectrum into
-% 
-% % May not work outside of Kavlifarm (~ 10min in kavlifarm using the parallel pool). Computationally heavy. 
-% cr_coherence_all(data, Pxx, CBF)
-% 
-% save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
+
+% May not work outside of Kavlifarm (~ 10min in kavlifarm using the parallel pool). Computationally heavy. 
+cr_coherence_all(data, Pxx, CBF)
+
+save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 % % 
 % % % %% Step 4.1: Pairwise Coherence versus distance - One patch
 % % % 
