@@ -29,7 +29,7 @@ Most codes can be run on a desktop computer, but the *pairwise coherence versus 
 
 The code can be run 1) per recording 2) in batch. 
 
-The single recording code (Master_analysis) is a script organized in sections. 
+The single recording code *Master_analysis* is a script organized in sections/steps.
 
   Step 0: In the first section, one selects a ciliary beat recording with a .mat extension. 
   Step 1: Define variables for analysing the recording. Mind to adjust the spatial resolution to the recorded ciliary beating. Unfortunately, the best values for lower frequency cutoff, minsize, and standard deviation depend on the tissue analyzed. 
@@ -40,7 +40,7 @@ The single recording code (Master_analysis) is a script organized in sections.
   Step 5: Identify patches of ciliary beating at a similar frequency. Note: This step and onwards does not depend on step 3-4. 
   Step 6: Extract the phase for each frequency patch separately and extract the phase parameters wave direction / wavelength. It is possible to plot a panel of sanity checks for each patch by running check = true; 
   
-The batch code (Master_batch) is a function running a part of the code for an entire folder. 
+The batch code *Master_batch* is a function running a part of the code for an entire folder. 
 
   Make sure that the setting are correct before running the batch code! 
   Running the code in batch will create a folder per recording. 
