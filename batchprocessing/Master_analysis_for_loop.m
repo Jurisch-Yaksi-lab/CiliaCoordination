@@ -67,7 +67,6 @@ CBF.n = 100;  % Number of bins to segment the powerspectrum into
 [freqsBinned] = cr_bin_power_spectrum(CBF, PowerSpec);
 
 % Segment the nose into frequency patches.
-CBF.minsize = 400; 
 I = freqsBinned.*CBF.mask;
 
 % Run the frequency segmentation (~40s)

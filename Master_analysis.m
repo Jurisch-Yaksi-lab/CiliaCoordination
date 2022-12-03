@@ -26,7 +26,7 @@ CBF.y = size(data,2);
 CBF.w_min = 15; % Lower frequency cutoff 
 CBF.caxis = [16 40]; % Upper and lower bound for any frequency plot. 
 CBF.spatres = 0.15;  % [um/pixel] spatial resolution
-CBF.signal_size = 400; % minimum number of pixels to be considered signal
+CBF.minsize = 400; % minimum number of pixels to be considered signal
 CBF.SD = 3; % maximum standard deviation for a block of 9 pixels to be considered signal
 
 % Input the frequency of acquisition
@@ -103,7 +103,6 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 [freqsBinned] = cr_bin_power_spectrum(CBF, PowerSpec);
 
 % Segment the nose into frequency patches.
-CBF.minsize = 400; 
 I = freqsBinned.*CBF.mask;
 
 % Run the frequency segmentation (~40s)
