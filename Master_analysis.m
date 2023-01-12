@@ -30,7 +30,7 @@ CBF.minsize = 400; % minimum number of pixels to be considered signal
 CBF.SD = 3; % maximum standard deviation for a block of 9 pixels to be considered signal
 
 % Input the frequency of acquisition
-CBF.Fs = 107; % Frequency of acquisition
+CBF.Fs = 108; % Frequency of acquisition
 
 % Save the results
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
@@ -41,7 +41,7 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF);
 
 % It is possible to run the frequency analysis with a predefined mask. 
-% [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis4(data,CBF, mask);
+% [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF, mask);
 
 % Save the results
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
@@ -53,10 +53,10 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 % ref = ginput; 
 % ref = round(ref);
 
-% Alternatively, load a matfile with the reference pixels presaved
-[fileR,pathR] = uigetfile('*.mat', 'Select the file with reference pixels to analyze');
-var = who(matfile(fullfile(pathR,fileR)));
-ref = double(load(fullfile(pathR,fileR),var{1}).(var{1}));
+% % Alternatively, load a matfile with the reference pixels presaved
+% [fileR,pathR] = uigetfile('*.mat', 'Select the file with reference pixels to analyze');
+% var = who(matfile(fullfile(pathR,fileR)));
+% ref = double(load(fullfile(pathR,fileR),var{1}).(var{1}));
 
 % Save the refence pixels
  CBF.ref = ref; 
@@ -114,7 +114,7 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 %% Step 6: Calculate wavedirection and wavelength. 
 
 % Decide whether you want to plot the patch check
-check = true; 
+check = false; 
 
 % Set the wavelength histogram variables
 CBF.max_wavelength = 200;

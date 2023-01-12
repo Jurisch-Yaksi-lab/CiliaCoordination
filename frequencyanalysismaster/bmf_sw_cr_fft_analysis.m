@@ -84,7 +84,7 @@ pic = ((PeakPos-1).*CBF.Fs)./nframe;
 % Create mask
 if isempty(varargin)
     picSD=jnh_FreqFilter(pic,CBF.SD,CBF.Fs);
-    mask = create_mask(picSD, CBF.signal_size);
+    mask = create_mask(picSD, CBF.minsize);
     mask(mask == 0) = NaN;
 else
     mask = varargin{1};

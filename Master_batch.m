@@ -14,7 +14,7 @@ CBF.folderP = fullfile(pathP, filesep);
 
 CBF.w_min = 15; % Lower frequency cutoff 
 CBF.caxis = [16 40]; % Upper and lower bound for any frequency plot. 
-CBF.spatres =  0.094; % [um/pixel] spatial resolution
+CBF.spatres =  0.15; % [um/pixel] spatial resolution
 CBF.minsize = 400; % minimum number of pixels to be considered signal
 CBF.SD = 3; % maximum standard deviation for a block of 9 pixels to be considered signal
 CBF.metadata_ID = '_aligned'; % sometimes the json file does not match the data file exactly

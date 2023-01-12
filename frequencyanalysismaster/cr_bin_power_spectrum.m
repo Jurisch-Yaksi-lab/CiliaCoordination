@@ -13,7 +13,8 @@ function [freqsBinned] = cr_bin_power_spectrum(CBF, PowerSpec)
 freq_res = CBF.Fs / CBF.nframe; % The frequency resolution of the orginal powerspectrum [Hz/frames]
 spec = 1:(CBF.nframe/2); 
 dCBF = (CBF.nframe/2) / CBF.n; 
-iw_min=1+round(CBF.w_min/CBF.Fs*CBF.n); % the position of the minimum frequency
+iw_min=1+round(CBF.w_min/CBF.Fs*(CBF.n*2)); % the position of the minimum frequency
+Nyquist = (CBF.nframe / 2) * freq_res;
 
 % Define new frequency bins
 tp = spec(1):dCBF:spec(end); % All timepoint that will be considered
@@ -53,6 +54,7 @@ toc
 %% Plotting figures 
 fprintf('plotting and saving...\n\n')
 
+% The frequency maps before and after binning
 figure, 
 subplot(1,2,1), imagesc(CBF.picSD, 'AlphaData', ~isnan(CBF.mask)); c = colorbar; colormap jet, caxis(CBF.caxis)
 c.Label.String = 'CBF in [HZ]'; 
@@ -71,5 +73,19 @@ set(gca,'YTickLabel',get(gca,'YTick')*CBF.spatres)
 xlabel('\mum'), ylabel('\mum'); 
 
 saveas(gcf, [CBF.targetP,CBF.name, sprintf('_figure_binned_freq_%d_bins.png', CBF.n)]);
+print( '-painters', gcf, [CBF.targetP,CBF.name, sprintf('_figure_binned_freq_%d_bins', CBF.n)],'-depsc');
 
+
+% The histogram of frequencies
+figure, 
+histogram(freqsBinned, 100, 'BinEdges', binEdges*freq_res), hold on,
+histogram(freqsBinned(~isnan(CBF.mask)), 100, 'BinEdges', binEdges*freq_res)
+xlim([CBF.w_min, Nyquist])
+legend({'entire map','only signal'})
+xlabel('CBF in [Hz]')
+ylabel('# of pixels')
+title(sprintf('Bin steps are: %0.2f Hz', dCBF*freq_res))
+
+saveas(gcf, [CBF.targetP,CBF.name, sprintf('_figure_hist_binned_freq_%d_bins.png', CBF.n)]);
+print( '-painters', gcf, [CBF.targetP,CBF.name, sprintf('_figure_hist_binned_freq_%d_bins', CBF.n)],'-depsc');
 
