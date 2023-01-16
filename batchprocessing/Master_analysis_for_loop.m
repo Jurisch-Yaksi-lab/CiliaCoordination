@@ -14,10 +14,10 @@
 %% Step 2: Perform the fast Fourier transform 
 
 % Fourier Transform (~20s to run the fft & ~200s with plotting)
-[PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF);
+[PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF);
 
 % It is possible to run the frequency analysis with a predefined mask. 
-% [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis4(data,CBF, mask);
+% [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PeakPos] = bmf_sw_cr_fft_analysis4(data,CBF, mask);
 
 % Save the results
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');

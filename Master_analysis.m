@@ -38,10 +38,10 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 %% Step 2: Perform the fast Fourier transform 
 
 % Fourier Transform (~20s to run the fft & ~200s with plotting)
-[PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF);
+[PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF);
 
 % It is possible to run the frequency analysis with a predefined mask. 
-% [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF, mask);
+% [PowerSpec,~,~,~,~,CBF.picSD,~,CBF.mask,CBF.nframe, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF, mask);
 
 % Save the results
 save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
@@ -54,9 +54,9 @@ save([CBF.targetP, CBF.name, '_CBF_parameters'], 'CBF');
 % ref = round(ref);
 
 % % Alternatively, load a matfile with the reference pixels presaved
-% [fileR,pathR] = uigetfile('*.mat', 'Select the file with reference pixels to analyze');
-% var = who(matfile(fullfile(pathR,fileR)));
-% ref = double(load(fullfile(pathR,fileR),var{1}).(var{1}));
+[fileR,pathR] = uigetfile('*.mat', 'Select the file with reference pixels to analyze');
+var = who(matfile(fullfile(pathR,fileR)));
+ref = double(load(fullfile(pathR,fileR),var{1}).(var{1}));
 
 % Save the refence pixels
  CBF.ref = ref; 

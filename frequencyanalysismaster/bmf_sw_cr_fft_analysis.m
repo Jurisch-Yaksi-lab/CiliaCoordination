@@ -1,4 +1,4 @@
-function [PowerSpec,Peak,Med,Mean,No_pix,picMask,PeakPhase,mask,nframe, PSD, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF,varargin)
+function [PowerSpec,Peak,Med,Mean,No_pix,picMask,PeakPhase,mask,nframe, PeakPos] = bmf_sw_cr_fft_analysis(data,CBF,varargin)
 % Merged Stephan's and Jan's code to both be speedy and generate all plots
 
 % data = the raw data (usually aligned)
@@ -118,7 +118,7 @@ mask_boundary=~edge(mask,'sobel',[],'nothinning');
 fprintf('plotting and saving...\n\n')
 %% Save data -------------------------------------------------------------
 save(fullfile(CBF.targetP,[CBF.name,'_fft.mat']),'PeakPos','PeakPhase','PeakPower', ...
-    'mask','nframe','raw10','PowerSpec', 'MeanPowerSpec', 'PSD','-v7.3');
+    'mask','nframe','raw10', 'MeanPowerSpec','-v7.3');
 
 %% Create figures  --------------------------------------------------------
 
