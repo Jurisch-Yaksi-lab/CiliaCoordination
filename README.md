@@ -4,7 +4,7 @@ Motile cilia may display remarkable traveling waves of rapidly succeeding ciliar
 
 Ciliacoordination is a collection of functions to quantify this collective beating of motile cilia. 
 
-These codes support the analysis in the [preprint](https://doi.org/10.1101/2021.11.23.469646) on bioRxiv.
+These codes support the analysis in [Novel analytical tools reveal that local synchronization of cilia coincides with tissue-scale metachronal waves in zebrafish multiciliated epithelia](https://doi.org/10.7554/eLife.77701) in eLife.
 
 The raw data are available in [Mendeley](https://data.mendeley.com/datasets/th35c5833g/1), doi: 10.17632/th35c5833g.1 
 
@@ -46,7 +46,10 @@ The batch code *Master_batch* is a function running a part of the code for an en
   Running the code in batch will create a folder per recording. 
   The batch code will skip steps 0-1 and 3-4.
 
+### References 
+* Ringers, C., Bialonski, S., Ege, M., Solovev, A., Hansen, J.N., Jeong, I., Friedrich, B.M. and Jurisch-Yaksi, N., 2023. Novel analytical tools reveal that local synchronization of cilia coincides with tissue-scale metachronal waves in zebrafish multiciliated epithelia. Elife, 12, p.e77701.
+* Codes supporting the model are available in https://github.com/icemtel/reconstruct3d_opt, https://github.com/icemtel/stokes, and https://github.com/icemtel/carpet.
+* Quantify ciliary beating in Fiji: Jeong, I., Hansen, J. N., Wachten, D., & Jurisch-Yaksi, N. (2022). Measurement of ciliary beating and fluid flow in the zebrafish adult telencephalon. STAR protocols, 3(3), 101542.  
+* A complementary [toolbox](https://www.repository.cam.ac.uk/handle/1810/265273) for quantifying metachronal waves: 
+Feriani, Luigi, et al. "Assessing the collective dynamics of motile cilia in cultures of human airway cells by multiscale DDM." Biophysical journal 113.1 (2017): 109-119.
 
-### Further references
-* codes supporting the model are available in https://github.com/icemtel/reconstruct3d_opt, https://github.com/icemtel/stokes, and https://github.com/icemtel/carpet.
-* there is complementary [toolbox](https://www.repository.cam.ac.uk/handle/1810/265273) for quantifying metachronal waves using different algorithms (Feriani, 2017)
