@@ -6,7 +6,8 @@ Ciliacoordination is a collection of functions to quantify this collective beati
 
 These codes support the analysis in [Novel analytical tools reveal that local synchronization of cilia coincides with tissue-scale metachronal waves in zebrafish multiciliated epithelia](https://doi.org/10.7554/eLife.77701) in eLife.
 
-The raw data are available in [Mendeley](https://data.mendeley.com/datasets/th35c5833g/1), doi: 10.17632/th35c5833g.1 
+A subset of the raw data are available in [Mendeley](https://data.mendeley.com/datasets/th35c5833g/1), doi: 10.17632/th35c5833g.1 
+Most raw data are available on Jurisch-Yaksi, N. (2023).Analytical tools to measure cilia synchronization by Ringers et al [Data set]. Norstore. https://doi.org/10.11582/2023.00006
 
 
 ### Summary
